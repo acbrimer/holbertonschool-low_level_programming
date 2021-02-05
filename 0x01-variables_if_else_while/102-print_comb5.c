@@ -9,7 +9,7 @@ int main(void)
 {
 	int n;
 
-	for (n = 0; n < 100; n++)
+	for (n = 0; n < 99; n++)
 	{
 		int nn;
 
@@ -20,7 +20,7 @@ int main(void)
 			putchar(' ');
 			putchar((nn / 10) + '0');
 			putchar((nn % 10) + '0');
-			if ((n == 99) && (nn == 99))
+			if ((n == 98) && (nn == 99))
 			{
 				break;
 			}
