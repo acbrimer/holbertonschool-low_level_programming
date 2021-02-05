@@ -23,7 +23,7 @@ int main(void)
 		flm = (f * 100) + (l * 10) + m;
 		lfm = (l * 100) + (f * 10) + m;
 		lmf = (l * 100) + (m * 10) + f;
-		if ((n <= mlf) && (n <= mfl) && (n <= flm) && (n <= lfm) && (n <= lmf))
+		if ((n < mlf) && (n < mfl) && (n < flm) && (n < lfm) && (n < lmf))
 		{
 			putchar(f + '0');
 			putchar(m + '0');
