@@ -9,23 +9,26 @@ int main(void)
 {
 	int n;
 
-	for (n = 0; n < 99; n++)
+	for (n = 0; n < 100; n++)
 	{
 		int nn;
 
 		for (nn = 0; nn < 100; nn++)
 		{
-			putchar((n / 10) + '0');
-			putchar((n % 10) + '0');
-			putchar(' ');
-			putchar((nn / 10) + '0');
-			putchar((nn % 10) + '0');
-			if ((n == 98) && (nn == 99))
+			if (n < nn)
 			{
-				break;
+				putchar((n / 10) + '0');
+				putchar((n % 10) + '0');
+				putchar(' ');
+				putchar((nn / 10) + '0');
+				putchar((nn % 10) + '0');
+				if ((n == 98) && (nn == 99))
+				{
+					break;
+				}
+				putchar(',');
+				putchar(' ');
 			}
-			putchar(',');
-			putchar(' ');
 		}
 	}
 	putchar('\n');
