@@ -10,11 +10,11 @@ int main(void)
 	double i, a = 1, b = 2, n;
 
 	printf("1, 2, ");
-	for (i = 0; i <= 96; i++)
+	for (i = 0; i <= 95; i++)
 	{
 		n = a + b;
 		printf("%.0f", n);
-		if (i == 96)
+		if (i == 95)
 			break;
 		printf(", ");
 		a = b;
