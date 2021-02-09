@@ -7,15 +7,16 @@
 */
 int main(void)
 {
-	double i, a = 0, b = 1, n = 2;
+	double i, a = 1, b = 2, n;
 
+	printf("%.0f, %.0f, ", a, b);
 	for (i = 1; i <= 100; i++)
 	{
-		printf("%.0f", a);
+		n = a + b;
+		printf("%.0f", n);
 		if (i == 100)
 			break;
 		printf(", ");
-		n = a + b;
 		a = b;
 		b = n;
 	}
