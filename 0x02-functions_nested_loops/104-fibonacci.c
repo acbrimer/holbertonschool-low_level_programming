@@ -7,7 +7,7 @@
 */
 int main(void)
 {
-	double i, a = 1, b = 2, n;
+	float i, a = 1, b = 2, n;
 
 	printf("1, 2, ");
 	for (i = a; i <= 96; i++)
