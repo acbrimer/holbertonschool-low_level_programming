@@ -11,7 +11,7 @@ int main(void)
 
 	for (i = 1023; i > 0; i--)
 	{
-		if ((i % 3) == 0 && (i % 5) == 0)
+		if ((i % 3) == 0 || (i % 5) == 0)
 			s += i;
 	}
 	printf("%d\n", s);
