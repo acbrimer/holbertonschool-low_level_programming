@@ -7,12 +7,13 @@
 */
 int main(void)
 {
-	long int a = 1, b = 2, n = 3, s;
+	long int a = 1, b = 2, n, s;
 
+	n = a + b;	
 	while (n < 4000000)
 	{
-		if (a % 2 == 0)
-			s += a;
+		if (b % 2 == 0)
+			s += b;
 		n = a + b;
 		a = b;
 		b = n;
