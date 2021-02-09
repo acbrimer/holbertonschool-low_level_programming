@@ -1,7 +1,8 @@
 #include "holberton.h"
 
 /**
- * times_table - prints times table
+ * print_times_table - prints times table
+ * @n: between 1 and 15
  *
  * Return: void
 */
@@ -27,7 +28,6 @@ void print_times_table(int n)
 				{
 					_putchar((i * ii) > 99 ? f + '0' : ' ');
 					_putchar((i * ii) > 9 ? m + '0' : ' ');
-		
 				}
 				_putchar(l + '0');
 				if (ii == n)
@@ -40,4 +40,5 @@ void print_times_table(int n)
 			}
 		}
 	}
+	_putchar('\n');
 }
