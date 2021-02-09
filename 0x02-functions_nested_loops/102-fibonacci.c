@@ -9,12 +9,12 @@ int main(void)
 {
 	long int i, a = 1, b = 2, n;
 
-	printf("%ld, %ld, ", a, b);
-	for (i = a; i < 50; i++)
+	printf("1, 2, ");
+	for (i = a; i <= 48; i++)
 	{
 		n = a + b;
 		printf("%ld", n);
-		if (i == 49)
+		if (i == 48)
 			break;
 		printf(", ");
 		a = b;
