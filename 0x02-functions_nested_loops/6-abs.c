@@ -6,9 +6,12 @@
 */
 int _abs(int n)
 {
-	int i;
-
-	i = n < 0 ? (n * -1) : n;
-
-	return (i);
+	if (n >= 0)
+	{
+		return (n);
+	}
+	else
+	{
+		return (n * -1);
+	}
 }
