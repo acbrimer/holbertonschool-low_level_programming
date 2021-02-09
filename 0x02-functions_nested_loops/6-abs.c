@@ -1,5 +1,6 @@
 /**
  * _abs - get absolute value
+ * @n: Number to get abs value of
  *
  * Return: int
 */
