@@ -7,15 +7,16 @@
 */
 int main(void)
 {
-	long int i, a = 0, b = 1, n = 2;
+	long int i, a = 1, b = 2, n;
 
-	for (i = 1; i <= 50; i++)
+	printf("%ld, %ld, ", a, b);
+	for (i = 0; i < 50; i++)
 	{
-		printf("%ld", a);
-		if (i == 50)
+		n = a + b;
+		printf("%ld", n);
+		if (i == 49)
 			break;
 		printf(", ");
-		n = a + b;
 		a = b;
 		b = n;
 	}
