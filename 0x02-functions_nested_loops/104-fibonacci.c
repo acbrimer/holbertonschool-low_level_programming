@@ -17,7 +17,7 @@ int main(void)
 	a2 = 1 % m;
 	b1 = 2 / m;
 	b2 = 2 % m;
-	for (i = 3; i < 100; i++)
+	for (i = 3; i < 99; i++)
 	{
 		/*add first 9 digits of c */
 		c1 = (a1 + b1) + ((a2 + b2) / m);
