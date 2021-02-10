@@ -24,7 +24,7 @@ int main(void)
 		/*add last 9 digits of c */
 		c2 = (a2 + b2) % m;
 		if (c1 > 0)
-			printf(", %lu%lu", c1, c2);
+			printf(", %lu%09lu", c1, c2);
 		else
 			printf(", %lu", c2);
 		a1 = b1;
