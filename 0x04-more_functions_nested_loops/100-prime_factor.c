@@ -8,7 +8,7 @@
 */
 int main(void)
 {
-	long int m, n = 612852475143;
+	long int m, i, n = 612852475143;
 
 	/*divide n by 2 until n is odd */
 	while (n % 2 == 0)
@@ -20,7 +20,7 @@ int main(void)
 	 * i counts up odds from 3
 	 * out of odd numbers to check when i = sqrt(n)
 	 */
-	for (long int i = 3; i <= sqrt(n); i = i + 2)
+	for (i = 3; i <= sqrt(n); i = i + 2)
 	{
 		/*check n is evenly divisible by i */
 		if (n % i == 0)
