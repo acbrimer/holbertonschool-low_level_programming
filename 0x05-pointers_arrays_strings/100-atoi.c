@@ -37,9 +37,9 @@ int _atoi(char *s)
 		int d = *(s + i) - 48;
 
 		if (sign == -1 && ((d - 48) * nth) > INT_MAX + num)
-			return (-9);
+			return (0);
 		else if (sign == 1 && ((d * nth) * -1) < INT_MIN - num)
-			return (-9);
+			return (0);
 		num -= (*(s + i) - 48) * nth;
 		nth *= 10;
 		if (i == 0)
