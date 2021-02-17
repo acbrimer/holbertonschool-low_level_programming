@@ -13,14 +13,17 @@ int _atoi(char *s)
 	while (finished == 0)
 	{
 		char c = *(s + i);
-		/*switch sign for negatives */
+		/*previous char */
+		char cl = i == 0 ? ' ' : *(s + (i - 1));
+
 		if (c == '-')
 			sign = sign == -1 ? 1 : -1;
 		if (c >= '0' && c <= '9' && started == 0)
-		{
-			start = i;
-			started = 1;
-		}
+			if (cl == ' ' || cl == '-' || cl == '+')
+			{
+				start = i;
+				started = 1;
+			}
 		if (c == '\0' || ((c < '0' || c > '9') && started == 1))
 		{
 			end = i - 1;
@@ -28,12 +31,11 @@ int _atoi(char *s)
 		}
 		i++;
 	}
-	/*handle strings with no numbers */
+	/*handle strings w/out numbers */
 	if (started == 0)
-		return (num);
+		return (0);
 	/*build number from 1's place by num chars in reverse */
-	for (i = end;
-		(i >= start); i--)
+	for (i = end; i >= start; i--)
 	{
 		/*convert char digit to int, add *10^nth to num */
 		num += (*(s + i) - 48) * nth;
