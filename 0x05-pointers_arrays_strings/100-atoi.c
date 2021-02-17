@@ -28,6 +28,9 @@ int _atoi(char *s)
 		}
 		i++;
 	}
+	/*handle strings with no numbers */
+	if (started == 0)
+		return (num);
 	/*build number from 1's place by num chars in reverse */
 	for (i = end;
 		(i >= start); i--)
