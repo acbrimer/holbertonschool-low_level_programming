@@ -5,25 +5,24 @@
  * Return: int found in string
 */
 
+#include <limits.h>
+
 int _atoi(char *s)
 {
 	unsigned int i = 0, start, end;
-	int started = 0, finished = 0, num = 0, nth = 1, sign = 1;
-	/*get start and end pos of first num in str */
+	int started = 0, finished = 0, num = 0, nth = 1, sign = -1;
+
 	while (finished == 0)
 	{
 		char c = *(s + i);
-		/*previous char */
-		char cl = i == 0 ? ' ' : *(s + (i - 1));
 
 		if (c == '-')
-			sign = sign == -1 ? 1 : -1;
+			sign = sign == 1 ? -1 : 1;
 		if (c >= '0' && c <= '9' && started == 0)
-			if (cl == ' ' || cl == '-' || cl == '+')
-			{
-				start = i;
-				started = 1;
-			}
+		{
+			start = i;
+			started = 1;
+		}
 		if (c == '\0' || ((c < '0' || c > '9') && started == 1))
 		{
 			end = i - 1;
@@ -31,14 +30,17 @@ int _atoi(char *s)
 		}
 		i++;
 	}
-	/*handle strings w/out numbers */
 	if (started == 0)
 		return (0);
-	/*build number from 1's place by num chars in reverse */
 	for (i = end; i >= start; i--)
 	{
-		/*convert char digit to int, add *10^nth to num */
-		num += (*(s + i) - 48) * nth;
+		int d = *(s + i) - 48;
+
+		if (sign == -1 && ((d - 48) * nth) > INT_MAX + num)
+			return (-9);
+		else if (sign == 1 && ((d * nth) * -1) < INT_MIN - num)
+			return (-9);
+		num -= (*(s + i) - 48) * nth;
 		nth *= 10;
 		if (i == 0)
 			break;
