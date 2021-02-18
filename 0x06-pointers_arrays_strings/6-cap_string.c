@@ -17,7 +17,7 @@ char *cap_string(char *s)
 		switch (prev)
 		{
 			case ' ':
-			case '	':
+			case '\t':
 			case '\n':
 			case ',':
 			case ';':
@@ -34,6 +34,8 @@ char *cap_string(char *s)
 				*(s + i) = *(s + i);
 		}
 		}
+		if (*(s + i) == '\t')
+			*(s + i) = ' ';
 		prev = *(s + i);
 		i++;
 	}
