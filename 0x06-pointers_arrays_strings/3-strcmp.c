@@ -3,7 +3,7 @@
  * @s1: first string
  * @s2: second string
  *
- * Returns: int difference between first mismatchd char
+ * Return: int difference between first mismatchd char
 */
 
 int _strcmp(char *s1, char *s2)
