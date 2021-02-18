@@ -6,8 +6,8 @@
 */
 int _atoi(char *s)
 {
-	unsigned int i = 0, start, end;
-	int started = 0, finished = 0, num = 0, nth = 1, sign = -1, d;
+	unsigned int i = 0, start, end, num = 0;
+	int started = 0, finished = 0, nth = 1, sign = -1, d;
 	char c;
 
 	while (finished == 0)
@@ -32,11 +32,11 @@ int _atoi(char *s)
 	for (i = end; i >= start; i--)
 	{
 		d = *(s + i) - 48;
-		num -= (*(s + i) - 48) * nth;
+		num += (*(s + i) - 48) * nth;
 		nth *= 10;
 		if (i == 0)
 			break;
 	}
 
-	return (num * sign);
+	return (sign == -1 ? -num : num);
 }
