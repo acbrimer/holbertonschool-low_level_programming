@@ -36,7 +36,7 @@ void print_buffer(char *b, int size)
 		i++;
 	}
 	if (i % 2 == 1)
-		printf("00");
+		printf("  ");
 	for (sp = (10 - ii) / 2; sp > 0; sp--)
 		printf("     ");
 	putchar(' ');
