@@ -10,12 +10,11 @@ char *cap_string(char *s)
 	int i = 1;
 	char prev;
 
+	*s = *s >= 'a' && *s <= 'z' ? *s - 32 : *s;
 	while (*(s + i))
 	{
 		if (*(s + i) >= 'a' && *(s + i) <= 'z')
 		{
-		if (i == 0)
-			*(s + i) = *(s + i) - 32;
 		switch (prev)
 		{
 			case ' ':
