@@ -12,8 +12,10 @@ char *cap_string(char *s)
 
 	while (*(s + i))
 	{
-		if (*(s + i) >= 97 && *(s + i) <= 122)
+		if (*(s + i) >= 'a' && *(s + i) <= 'z')
 		{
+		if (i == 0)
+			*(s + i) = *(s + i) - 32;
 		switch (prev)
 		{
 			case ' ':
