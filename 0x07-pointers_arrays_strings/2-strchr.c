@@ -1,3 +1,5 @@
+#include "holberton.h"
+
 /**
  * _strchr - finds first char in str
  * @s: string to search
@@ -17,5 +19,5 @@ char *_strchr(char *s, char c)
 		i++;
 	}
 
-	return (0);
+	return (NULL);
 }
