@@ -8,7 +8,7 @@
 
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int si = 0, ai, c = 0;
+	unsigned int si = 0, ai;
 
 	while (s[si])
 	{
@@ -16,14 +16,13 @@ unsigned int _strspn(char *s, char *accept)
 		while (accept[ai])
 		{
 			if (accept[ai] == s[si])
-			{
-				c++;
 				break;
-			}
+			if (!accept[ai + 1])
+				return (si);
 			ai++;
 		}
 		si++;
 	}
 
-	return (si - c);
+	return (si);
 }
