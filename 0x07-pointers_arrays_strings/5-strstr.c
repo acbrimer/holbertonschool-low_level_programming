@@ -10,6 +10,8 @@ char *_strstr(char *haystack, char *needle)
 {
 	unsigned int hi = 0, ni = 0;
 
+	if (!needle[0])
+		return (haystack);
 	while (haystack[hi])
 	{
 		ni = haystack[hi] == needle[ni] ? ni + 1 : 0;
