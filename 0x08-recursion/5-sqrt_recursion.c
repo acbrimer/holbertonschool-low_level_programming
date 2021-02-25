@@ -1,3 +1,15 @@
+#include "holberton.h"
+/**
+ * _sqrt_recursion - function to handle call to recursive _sqrt
+ * @x: number to find square root of
+ *
+ * Return: int square root of x
+*/
+int _sqrt_recursion(int n)
+{
+	return (n < 0 ? -1 : _sqrt(n, 1));
+}
+
 /**
  * _sqrt - recursive function to get square root
  * @n: number to find square root of
@@ -12,15 +24,4 @@ int _sqrt(int n, int x)
 	if (x * x > n)
 		return (-1);
 	return (_sqrt(n, x + 1));
-}
-
-/**
- * _sqrt_recursion - function to handle call to recursive _sqrt
- * @x: number to find square root of
- *
- * Return: int square root of x
-*/
-int _sqrt_recursion(int n)
-{
-	return (n < 0 ? -1 : _sqrt(n, 1));
 }
