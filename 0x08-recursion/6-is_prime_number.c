@@ -22,5 +22,5 @@ int is_divisible(int n, int x)
 */
 int is_prime_number(int n)
 {
-	return (n < 0 ? 0 : is_divisible(n, 2));
+	return (n == -1 ? 0 : is_divisible(n, 2));
 }
