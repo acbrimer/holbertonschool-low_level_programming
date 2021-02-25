@@ -28,5 +28,5 @@ int is_palindrome(char *s)
 	while (s[l])
 		l++;
 
-	return (l == 0 ? 1 : palindrome_checker(s, l, 0));
+	return (palindrome_checker(s, l, 0));
 }
