@@ -25,15 +25,16 @@ int isnumeric(const char *s)
 
 /**
  * main - multiplies two numbers
- * @argc: number of args (unused)
+ * @argc: number of args
  * @argv: argv[1] for fist number, argv[2] for second number
  *
  * Return: always 0
 */
 int main(int argc, char **argv)
 {
-	(void)argc;
-	if (isnumeric(argv[1]) && isnumeric(argv[2]))
+	if (argc < 3)
+		puts("Error");
+	else if (isnumeric(argv[1]) && isnumeric(argv[2]))
 		printf("%d\n", atoi(argv[1]) * atoi(argv[2]));
 	else
 		puts("Error");
