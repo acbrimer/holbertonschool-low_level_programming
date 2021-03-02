@@ -16,6 +16,8 @@ int **alloc_grid(int width, int height)
 		return (NULL);
 	s = (sizeof(int *) * height) + (sizeof(int) * width * height);
 	g = (int **)malloc(s);
+	if (g == NULL)
+		return (NULL);
 	/* get first row in g */
 	r = (int *)(g + height);
 	/* loop to set rows in g */
