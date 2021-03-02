@@ -12,11 +12,8 @@ char *create_array(unsigned int size, char c)
 	unsigned int i;
 	char *r = (char *)malloc(size);
 
-	if (size == 0)
-		return (NULL);
 	for (i = 0; i < size; i++)
 		r[i] = c;
-	r[size] = '\0';
-
-	return (r);
+	
+	return (r == NULL ? NULL : r);
 }
