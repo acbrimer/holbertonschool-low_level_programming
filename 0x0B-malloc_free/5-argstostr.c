@@ -11,17 +11,17 @@
 
 char *argstostr(int ac, char **av)
 {
-	unsigned int a, i, c = 0, s = 0;
+	int a, i, c = 0, s = 0;
 	char *str;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
-	for (a = 0; a < (unsigned int)ac; a++)
+	for (a = 0; a < ac; a++)
 		s += sizeof(av[a]);
 	str = malloc(s);
 	if (str == NULL)
 		return (NULL);
-	for (a = 0; a < (unsigned int)ac; a++)
+	for (a = 0; a < ac; a++)
 	{
 		i = 0;
 		while (av[a][i])
