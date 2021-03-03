@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * _charcount - counts non-space chars in string
@@ -63,7 +62,6 @@ char **strtow(char *str)
 			int l = 0;
 
 			tmp = _strtok(str, i);
-			printf("i: %d tmp: %s\n", i, tmp);
 			while (tmp[l])
 				l++;
 			res[r] = tmp;
