@@ -20,8 +20,6 @@ char *str_concat(char *s1, char *s2)
 	if (s2 != NULL)
 		while (s2[b])
 			b++;
-	if (a + b == 0)
-		return (NULL);
 	l = a + b + 1;
 	n = (char *)malloc(sizeof(char) * l);
 	if (n == NULL)
@@ -33,4 +31,4 @@ char *str_concat(char *s1, char *s2)
 	n[l] = '\0';
 
 	return (n);
-}
+
