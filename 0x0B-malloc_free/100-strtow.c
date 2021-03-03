@@ -31,12 +31,12 @@ char *_strtok(char *str, int start)
 
 	while (str[l + start] != ' ')
 		l++;
-	s = malloc(l * sizeof(char));
+	s = malloc(l + 1 * sizeof(char));
 	if (s == NULL)
 		return (NULL);
 	for (i = 0; i < l; i++)
 		s[i] = str[i + start];
-	s[l] = '\0';
+	s[i] = '\0';
 
 	return (s);
 }
@@ -49,7 +49,7 @@ char *_strtok(char *str, int start)
 */
 char **strtow(char *str)
 {
-	int cc = 0, i = 0, r = 0;
+	int cc = 0, i = 0, r = 0, l, ii;
 	char **res;
 	char *tmp;
 
@@ -65,7 +65,7 @@ char **strtow(char *str)
 			i++;
 		else
 		{
-			int l = 0, ii;
+			l = 0;
 
 			tmp = _strtok(str, i);
 			if (tmp == NULL)
