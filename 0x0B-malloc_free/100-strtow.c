@@ -98,7 +98,6 @@ char **strtow(char *str)
 			i += l;
 		}
 	}
-	res[wc] = NULL;
 
 	return (res);
 }
