@@ -80,6 +80,8 @@ char **strtow(char *str)
 			i += l;
 		}
 	}
+	if (res == NULL)
+		return (NULL);
 
 	return (res);
 }
