@@ -14,10 +14,12 @@ char *str_concat(char *s1, char *s2)
 	int a = 0, b = 0, i, l;
 	char *n;
 
-	while (s1[a])
-		a++;
-	while (s2[b])
-		b++;
+	if (s1 != NULL)
+		while (s1[a])
+			a++;
+	if (s2 != NULL)
+		while (s2[b])
+			b++;
 	if (a + b == 0)
 		return (NULL);
 	l = a + b + 1;
