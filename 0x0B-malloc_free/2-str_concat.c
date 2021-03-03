@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * str_concat - allocates new memory to concat strings
@@ -10,7 +11,7 @@
 
 char *str_concat(char *s1, char *s2)
 {
-	int a = 0, b = 0, i;
+	int a = 0, b = 0, i, l;
 	char *n;
 
 	while (s1[a])
@@ -19,14 +20,15 @@ char *str_concat(char *s1, char *s2)
 		b++;
 	if (a + b == 0)
 		return (NULL);
-	n = (char *)malloc(a + b + 1);
+	l = a + b + 1;
+	n = (char *)malloc(sizeof(char) * l);
 	for (i = 0; i < a; i++)
 		n[i] = s1[i];
-	for (; i < a + b; i++)
+	for (; i < l; i++)
 		n[i] = s2[i - a];
 	if (n == NULL)
 		return (NULL);
-	n[i + 1] = '\0';
+	n[l] = '\0';
 
 	return (n);
 }
