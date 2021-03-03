@@ -46,7 +46,7 @@ char *_strtok(char *str, int start)
 	int i, l = 0;
 	char *s;
 
-	while (str[l + start] != ' ')
+	while (str[l + start] != '\0' && str[l + start] != ' ')
 		l++;
 	s = malloc(l * sizeof(char));
 	if (s == NULL)
@@ -72,7 +72,7 @@ char **strtow(char *str)
 
 	cc = _charcount(str);
 	wc = _wordcount(str);
-	if (str == NULL || cc == 0 || wc == 0)
+	if (str == NULL || cc == 0)
 		return (NULL);
 	res = malloc(sizeof(char *) * cc + wc - 1);
 	while (str[i])
