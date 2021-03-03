@@ -27,11 +27,11 @@ int _charcount(char *str)
 char *_strtok(char *str, int start)
 {
 	int i, l = 0;
-	char *s = NULL;
+	char *s;
 
 	while (str[l + start] != ' ')
 		l++;
-	s = malloc(l * sizeof(char));
+	s = malloc(l + 1 * sizeof(char));
 	if (s == NULL)
 		return (NULL);
 	for (i = 0; i < l; i++)
@@ -50,13 +50,13 @@ char *_strtok(char *str, int start)
 char **strtow(char *str)
 {
 	int cc = 0, i = 0, r = 0;
-	char **res = NULL;
+	char **res;
 	char *tmp;
 
 	cc = _charcount(str);
 	if (str == NULL || cc == 0)
 		return (NULL);
-	res = malloc(sizeof(char *) * cc);
+	res = malloc(sizeof(char *) * cc + 1);
 	if (res == NULL)
 		return (NULL);
 	while (str[i])
@@ -65,14 +65,17 @@ char **strtow(char *str)
 			i++;
 		else
 		{
-			int l = 0;
+			int l = 0, ii;
 
 			tmp = _strtok(str, i);
 			if (tmp == NULL)
 				return (NULL);
 			while (tmp[l])
 				l++;
-			res[r] = tmp;
+			res[r] = malloc(sizeof(char) * l + 1);
+			for (ii = 0; ii <= l; ii++)
+				res[r][ii] = tmp[ii];
+			free(tmp);
 			r++;
 			i += l;
 		}
