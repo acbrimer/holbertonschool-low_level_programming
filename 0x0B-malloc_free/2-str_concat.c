@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * str_concat - allocates new memory to concat strings
@@ -31,4 +30,4 @@ char *str_concat(char *s1, char *s2)
 	n[l] = '\0';
 
 	return (n);
-
+}
