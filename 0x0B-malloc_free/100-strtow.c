@@ -31,7 +31,7 @@ char *_strtok(char *str, int start)
 
 	while (str[l + start] != ' ')
 		l++;
-	s = malloc((l + 1) * sizeof(char));
+	s = malloc(l * sizeof(char));
 	if (s == NULL)
 		return (NULL);
 	for (i = 0; i < l; i++)
