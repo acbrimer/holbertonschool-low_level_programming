@@ -58,7 +58,7 @@ char **strtow(char *str)
 	if (str == NULL || len == 0)
 		return (NULL);
 	cc = _charcount(str);
-	res = malloc(sizeof(char *) * cc + 1);
+	res = malloc(sizeof(char *) * cc);
 	if (res == NULL)
 		return (NULL);
 	while (str[i])
