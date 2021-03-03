@@ -49,15 +49,13 @@ char *_strtok(char *str, int start)
 */
 char **strtow(char *str)
 {
-	int cc = 0, i = 0, r = 0, len = 0;
+	int cc = 0, i = 0, r = 0;
 	char **res = NULL;
 	char *tmp;
 
-	while (str[len])
-		len++;
-	if (str == NULL || len == 0)
-		return (NULL);
 	cc = _charcount(str);
+	if (str == NULL || cc == 0)
+		return (NULL);
 	res = malloc(sizeof(char *) * cc);
 	if (res == NULL)
 		return (NULL);
