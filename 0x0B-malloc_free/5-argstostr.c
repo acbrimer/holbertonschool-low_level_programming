@@ -1,6 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
+
+int _strlen(char *s)
+{
+	int l = 0;
+	while (s[l])
+		l++;
+
+	return (l);
+}
 
 /**
  * argstostr - concats args from main to string
@@ -9,7 +17,6 @@
  *
  * Return: char * pointer to args string
 */
-
 char *argstostr(int ac, char **av)
 {
 	int a, i, c = 0, s = 0;
@@ -18,7 +25,7 @@ char *argstostr(int ac, char **av)
 	if (ac == 0 || av == NULL)
 		return (NULL);
 	for (a = 0; a < ac; a++)
-		s += 1 + strlen(av[a]);
+		s += 1 + _strlen(av[a]);
 	str = (char *)malloc(s * sizeof(char) + 1);
 	if (str == NULL)
 		return (NULL);
