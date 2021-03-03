@@ -18,6 +18,23 @@ int _charcount(char *str)
 }
 
 /**
+ * _wordcount - gets count of words in string sep. by spaces
+ * @str: input string
+ *
+ * Return: int count of words
+*/
+int _wordcount(char *str)
+{
+	int i, wc = 0;
+
+	for (i = 0; str[i] != '\0'; i++)
+		if (str[i] == ' ' && str[i - 1] != ' ')
+			wc++;
+
+	return (wc);
+}
+
+/**
  * _strtok - returns substring until space delim
  * @str: full string to check
  * @start: starting index in string
@@ -49,14 +66,15 @@ char *_strtok(char *str, int start)
 */
 char **strtow(char *str)
 {
-	int cc = 0, i = 0, r = 0, l, ii;
+	int cc = 0, wc = 0, i = 0, r = 0, l, ii;
 	char **res;
 	char *tmp;
 
 	cc = _charcount(str);
+	wc = _wordcount(str);
 	if (str == NULL || cc == 0)
 		return (NULL);
-	res = malloc(sizeof(char *) * cc + 1);
+	res = malloc(sizeof(char *) * cc + wc);
 	if (res == NULL)
 		return (NULL);
 	while (str[i])
