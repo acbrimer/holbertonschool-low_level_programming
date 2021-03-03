@@ -89,8 +89,9 @@ char **strtow(char *str)
 			while (tmp[l])
 				l++;
 			res[r] = malloc(sizeof(char) * l + 1);
-			for (ii = 0; ii <= l; ii++)
+			for (ii = 0; ii < l; ii++)
 				res[r][ii] = tmp[ii];
+			res[r][ii] = '\0';
 			free(tmp);
 			r++;
 			i += l;
