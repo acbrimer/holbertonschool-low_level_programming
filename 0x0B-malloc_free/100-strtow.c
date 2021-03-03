@@ -47,12 +47,16 @@ char *_strtok(char *str, int start)
 */
 char **strtow(char *str)
 {
-	int cc = 0, i = 0, r = 0;
+	int cc = 0, i = 0, r = 0, len = 0;
 	char **res = NULL;
 	char *tmp;
 
+	while (str[len])
+		len++;
+	if (str == NULL || len == 0)
+		return (NULL);
 	cc = _charcount(str);
-	res = malloc(sizeof(char *) * cc);
+	res = malloc(sizeof(char *) * cc + 1);
 	while (str[i])
 	{
 		if (str[i] == ' ')
