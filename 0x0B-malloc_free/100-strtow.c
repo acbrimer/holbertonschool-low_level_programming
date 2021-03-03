@@ -74,7 +74,7 @@ char **strtow(char *str)
 	wc = _wordcount(str);
 	if (str == NULL || cc == 0)
 		return (NULL);
-	res = malloc(sizeof(char *) * cc + wc);
+	res = malloc(sizeof(char *) * cc + wc - 1);
 	while (str[i])
 	{
 		if (str[i] == ' ')
