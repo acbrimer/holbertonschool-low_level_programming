@@ -72,7 +72,7 @@ char **strtow(char *str)
 
 	cc = _charcount(str);
 	wc = _wordcount(str);
-	if (str == NULL || cc == 0)
+	if (str == NULL || cc == 0 || wc == 0)
 		return (NULL);
 	res = malloc(sizeof(char *) * cc + wc - 1);
 	while (str[i])
@@ -88,7 +88,7 @@ char **strtow(char *str)
 				return (NULL);
 			while (tmp[l])
 				l++;
-			res[r] = malloc(sizeof(char) * l + 1);
+			res[r] = malloc(sizeof(char) * l);
 			for (ii = 0; ii < l; ii++)
 				res[r][ii] = tmp[ii];
 			res[r][ii] = '\0';
