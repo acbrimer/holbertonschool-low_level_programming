@@ -57,6 +57,8 @@ char **strtow(char *str)
 		return (NULL);
 	cc = _charcount(str);
 	res = malloc(sizeof(char *) * cc + 1);
+	if (res == NULL)
+		return (NULL);
 	while (str[i])
 	{
 		if (str[i] == ' ')
