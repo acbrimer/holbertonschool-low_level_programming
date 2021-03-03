@@ -32,6 +32,8 @@ char *_strtok(char *str, int start)
 	while (str[l + start] != ' ')
 		l++;
 	s = malloc((l + 1) * sizeof(char));
+	if (s == NULL)
+		return (NULL);
 	for (i = 0; i < l; i++)
 		s[i] = str[i + start];
 	s[l] = '\0';
@@ -68,6 +70,8 @@ char **strtow(char *str)
 			int l = 0;
 
 			tmp = _strtok(str, i);
+			if (tmp == NULL)
+				return (NULL);
 			while (tmp[l])
 				l++;
 			res[r] = tmp;
@@ -75,8 +79,6 @@ char **strtow(char *str)
 			i += l;
 		}
 	}
-	if (res == NULL)
-		return (NULL);
 
 	return (res);
 }
