@@ -79,6 +79,7 @@ char **strtow(char *str)
 			i += l;
 		}
 	}
+	res[r] = NULL;
 
 	return (res);
 }
