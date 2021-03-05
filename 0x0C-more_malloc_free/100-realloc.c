@@ -13,7 +13,7 @@ void _memcpy(void *dest, void *src, unsigned int size)
 
 	if ((cdest != NULL) && (csrc != NULL))
 	{
-		while(size)
+		while (size)
 		{
 			*(cdest++) = *(csrc++);
 			size--;
@@ -26,6 +26,8 @@ void _memcpy(void *dest, void *src, unsigned int size)
  * @ptr: pointer to realloc
  * @old_size: previous size of pointer data
  * @new_size: new size of pointer data
+ *
+ * Return: void * pointer to reallocated memory
 */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
