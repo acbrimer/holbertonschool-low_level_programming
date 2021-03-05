@@ -1,5 +1,25 @@
 #include <stdlib.h>
-#include <string.h>
+
+/**
+ * _memcpy - copies memory from void pointers
+ * @dest: destination pointer for copy
+ * @src: source pointer for copy
+ * @size: size to copy
+*/
+void _memcpy(void *dest, void *src, unsigned int size)
+{
+	char *cdest = (char *)dest;
+	const char *csrc = (char *)src;
+
+	if ((cdest != NULL) && (csrc != NULL))
+	{
+		while(size)
+		{
+			*(cdest++) = *(csrc++);
+			size--;
+		}
+	}
+}
 
 /**
  * _realloc - reallocates pointer to new size on heap
@@ -9,7 +29,7 @@
 */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	void *nptr;
+	char *nptr;
 	unsigned int s;
 
 	if (new_size == old_size)
@@ -18,7 +38,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (nptr == NULL)
 		return (NULL);
 	s = old_size < new_size ? old_size : new_size;
-	memcpy(nptr, ptr, s);
+	_memcpy(nptr, ptr, s);
 	free(ptr);
 
 	return (nptr);
