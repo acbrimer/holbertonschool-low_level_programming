@@ -80,14 +80,16 @@ void rev_string(char *s, int len)
  *
  * Return: int * array of digits for product
 */
-int *_mul(char *n1, char *n2)
+int *_mul(char *n1, char *n2, int l1, int l2)
 {
-	int l1 = _strlen(n1), l2 = _strlen(n2);
 	int i, ii, t = 0,  d1, d2, n;
-	int *res = malloc(sizeof(int) * (l1 + l2));
+	int *res = malloc(sizeof(int) * (l1 + l2 + 1));
 
 	if (res == NULL)
+	{
+		_puts("Error");
 		exit(98);
+	}
 	for (i = 0; i < (l1 + l2); i++)
 		res[i] = 0;
 	if (_isnumeric(n1) * _isnumeric(n2) == 0)
@@ -129,7 +131,7 @@ int main(int argc, char **argv)
 {
 	int *res;
 	char *n1, *n2;
-	int l, i, s = 1;
+	int l, i, s = 1, l1, l2;
 
 	if (argc != 3)
 	{
@@ -148,8 +150,10 @@ int main(int argc, char **argv)
 		s *= -1;
 		n2++;
 	}
-	res = _mul(n1, n2);
-	l = (_strlen(n1) + _strlen(n2));
+	l1 = _strlen(n1);
+	l2 = _strlen(n2);
+	res = _mul(n1, n2, l1, l2);
+	l = (l1 + l2);
 	while (l > 0 && res[l] == 0)
 		l--;
 	if (s == -1 && l > 0)
