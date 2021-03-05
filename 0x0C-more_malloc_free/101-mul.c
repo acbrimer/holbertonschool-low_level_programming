@@ -152,7 +152,7 @@ int main(int argc, char **argv)
 	l = (_strlen(n1) + _strlen(n2));
 	while (l > 0 && res[l] == 0)
 		l--;
-	if (s == -1)
+	if (s == -1 && l > 0)
 		_putchar('-');
 	for (i = l; i >= 0; i--)
 		_putchar(res[i] + '0');
