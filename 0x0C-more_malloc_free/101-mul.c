@@ -77,6 +77,8 @@ void rev_string(char *s, int len)
  * _mul - multiplies two numbers
  * @n1: first number
  * @n2: second number
+ * @l1: length of n1
+ * @l2: length of n2
  *
  * Return: int * array of digits for product
 */
