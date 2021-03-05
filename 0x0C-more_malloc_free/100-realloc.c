@@ -5,17 +5,20 @@
  * @dest: destination pointer for copy
  * @src: source pointer for copy
  * @size: size to copy
+ * @src_size: size of source string
 */
-void _memcpy(void *dest, void *src, unsigned int size)
+void _memcpy(void *dest, void *src, unsigned int size, unsigned int src_size)
 {
 	char *cdest = (char *)dest;
 	const char *csrc = (char *)src;
+	unsigned int i = 0;
 
 	if ((cdest != NULL) && (csrc != NULL))
 	{
 		while (size)
 		{
-			*(cdest++) = *(csrc++);
+			*(cdest++) = i > src_size ? '\0' : *(csrc++);
+			i++;
 			size--;
 		}
 	}
@@ -53,7 +56,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (NULL);
 	}
 	s = old_size < new_size ? old_size : new_size;
-	_memcpy(nptr, ptr, s);
+	_memcpy(nptr, ptr, s, old_size);
 	free(ptr);
 
 	return (nptr);
