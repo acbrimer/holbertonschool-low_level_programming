@@ -137,7 +137,7 @@ int main(int argc, char **argv)
 	}
 	res = _mul(argv[1], argv[2]);
 	l = (_strlen(argv[1]) + _strlen(argv[2]));
-	while (res[l] == 0)
+	while (l > 0 && res[l] == 0)
 		l--;
 	for (i = l; i >= 0; i--)
 		_putchar(res[i] + '0');
