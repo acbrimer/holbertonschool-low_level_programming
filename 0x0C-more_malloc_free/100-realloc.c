@@ -15,9 +15,9 @@ void _memcpy(void *dest, void *src, unsigned int size, unsigned int src_size)
 
 	if ((cdest != NULL) && (csrc != NULL))
 	{
-		while (size)
+		while (size && i < src_size)
 		{
-			*(cdest++) = i > src_size ? '\0' : *(csrc++);
+			*(cdest++) = *(csrc++);
 			i++;
 			size--;
 		}
