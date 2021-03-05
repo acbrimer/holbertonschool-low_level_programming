@@ -128,17 +128,32 @@ int *_mul(char *n1, char *n2)
 int main(int argc, char **argv)
 {
 	int *res;
-	int l, i;
+	char *n1, *n2;
+	int l, i, s = 1;
 
 	if (argc != 3)
 	{
 		_puts("Error");
 		return (98);
 	}
-	res = _mul(argv[1], argv[2]);
-	l = (_strlen(argv[1]) + _strlen(argv[2]));
+	n1 = argv[1];
+	n2 = argv[2];
+	if (*n1 == '-')
+	{
+		s *= -1;
+		n1++;
+	}
+	if (*n2 == '-')
+	{
+		s *= -1;
+		n2++;
+	}
+	res = _mul(n1, n2);
+	l = (_strlen(n1) + _strlen(n2));
 	while (l > 0 && res[l] == 0)
 		l--;
+	if (s == -1)
+		_putchar('-');
 	for (i = l; i >= 0; i--)
 		_putchar(res[i] + '0');
 	_putchar('\n');
