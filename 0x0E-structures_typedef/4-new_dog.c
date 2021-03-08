@@ -48,11 +48,16 @@ dog_t *new_dog(char *name, float age, char *owner)
 			return (NULL);
 		dog->name = _name;
 	}
+	else
+		dog->name = "(nil)";
 	if (owner != NULL)
 	{
 		if (_owner == NULL)
 			return (NULL);
 		dog->owner = _owner;
 	}
+	else
+		dog->owner = "(nil)";
+
 	return (dog);
 }
