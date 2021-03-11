@@ -23,15 +23,13 @@ char *_sarg(char *string)
 void print_all(const char * const format, ...)
 {
 	va_list a;
-	int l = 0, i = 0;
+	int i = 0;
 	char f;
 
 	if (format == NULL)
 		exit(0);
-	while (format[l])
-		l++;
 	va_start(a, format);
-	while (i < l)
+	while (format[i])
 	{
 		f = format[i];
 		switch (f)
