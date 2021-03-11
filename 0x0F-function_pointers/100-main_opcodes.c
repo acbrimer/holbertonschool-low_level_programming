@@ -16,13 +16,13 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		puts("Error");
-		return (1);
+		exit(1);
 	}
 	size = atoi(argv[1]);
 	if (size < 0)
 	{
 		puts("Error");
-		return (2);
+		exit(2);
 	}
 	if (size > 0)
 		printf("%02x", *main_ptr & 0xFF);
