@@ -7,4 +7,9 @@ void print_numbers(const char *separator, const unsigned int n, ...);
 
 void print_strings(const char *separator, const unsigned int n, ...);
 
+void print_all(const char * const format, ...);
+
+#define _SARG(s) ((s) == 0 ? "" : (s))
+#define _SEPARATOR(i, s) ((i) == 0 || (s) == 0 ? "" : (s))
+
 #endif
