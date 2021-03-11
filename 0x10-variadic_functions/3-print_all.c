@@ -26,33 +26,31 @@ void print_all(const char * const format, ...)
 	int i = 0;
 	char f;
 
-	if (format == NULL)
+	if (format != NULL)
 	{
-		putchar('\n');
-		exit(0);
-	}
-	va_start(a, format);
-	while (format[i])
-	{
-		f = format[i];
-		switch (f)
+		va_start(a, format);
+		while (format[i])
 		{
-			case 'c':
-				printf("%s%c", _SEPARATOR(i, ", "), va_arg(a, int));
-				break;
-			case 'i':
-				printf("%s%d", _SEPARATOR(i, ", "), va_arg(a, int));
-				break;
-			case 'f':
-				printf("%s%f", _SEPARATOR(i, ", "), va_arg(a, double));
-				break;
-			case 's':
-				printf("%s%s", _SEPARATOR(i, ", "), _sarg(va_arg(a, char*)));
-				break;
-			default:
-				break;
-		}
+			f = format[i];
+			switch (f)
+			{
+				case 'c':
+					printf("%s%c", _SEPARATOR(i, ", "), va_arg(a, int));
+					break;
+				case 'i':
+					printf("%s%d", _SEPARATOR(i, ", "), va_arg(a, int));
+					break;
+				case 'f':
+					printf("%s%f", _SEPARATOR(i, ", "), va_arg(a, double));
+					break;
+				case 's':
+					printf("%s%s", _SEPARATOR(i, ", "), _sarg(va_arg(a, char*)));
+					break;
+				default:
+					break;
+			}
 		i++;
+		}
 	}
 	putchar('\n');
 	va_end(a);
