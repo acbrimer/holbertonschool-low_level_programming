@@ -27,7 +27,10 @@ void print_all(const char * const format, ...)
 	char f;
 
 	if (format == NULL)
+	{
+		putchar('\n');
 		exit(0);
+	}
 	va_start(a, format);
 	while (format[i])
 	{
