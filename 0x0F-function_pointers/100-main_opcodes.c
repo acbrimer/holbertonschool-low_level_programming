@@ -25,10 +25,10 @@ int main(int argc, char **argv)
 		return (2);
 	}
 	if (size > 0)
-		printf("%02x", *main_ptr & 0xFF);
-	for (i = 1; i < size && main_ptr[i] != 0; i++)
+		printf("%02hhx", *main_ptr);
+	for (i = 1; i < size; i++)
 	{
-		printf(" %02x", main_ptr[i] & 0xFF);
+		printf(" %02hhx", main_ptr[i]);
 	}
 	putchar('\n');
 
