@@ -23,7 +23,7 @@ char *_sarg(char *string)
 void print_all(const char * const format, ...)
 {
 	va_list a;
-	int i = 0;
+	int i = 0, l = 0;
 	char f;
 
 	if (format != NULL)
@@ -35,18 +35,20 @@ void print_all(const char * const format, ...)
 			switch (f)
 			{
 				case 'c':
-					printf("%s%c", _SEPARATOR(i, ", "), va_arg(a, int));
+					printf("%s%c", _SEPARATOR(l, ", "), va_arg(a, int));
+					l++;
 					break;
 				case 'i':
-					printf("%s%i", _SEPARATOR(i, ", "), va_arg(a, int));
+					printf("%s%i", _SEPARATOR(l, ", "), va_arg(a, int));
+					l++;
 					break;
 				case 'f':
-					printf("%s%f", _SEPARATOR(i, ", "), va_arg(a, double));
+					printf("%s%f", _SEPARATOR(l, ", "), va_arg(a, double));
+					l++;
 					break;
 				case 's':
-					printf("%s%s", _SEPARATOR(i, ", "), _sarg(va_arg(a, char*)));
-					break;
-				default:
+					printf("%s%s", _SEPARATOR(l, ", "), _sarg(va_arg(a, char*)));
+					l++;
 					break;
 			}
 		i++;
