@@ -41,7 +41,7 @@ void print_all(const char * const format, ...)
 					printf("%s%d", _SEPARATOR(i, ", "), va_arg(a, int));
 					break;
 				case 'f':
-					printf("%s%f", _SEPARATOR(i, ", "), va_arg(a, double));
+					printf("%s%.6g", _SEPARATOR(i, ", "), va_arg(a, double));
 					break;
 				case 's':
 					printf("%s%s", _SEPARATOR(i, ", "), _sarg(va_arg(a, char*)));
