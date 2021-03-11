@@ -24,8 +24,8 @@ int main(int argc, char **argv)
 		puts("Error");
 		return (2);
 	}
-	/* derefrenced pointer & 0xFF to get last sig. byte */
-	printf("%02x", *main_ptr & 0xFF);
+	if (size > 0)
+		printf("%02x", *main_ptr & 0xFF);
 	for (i = 1; i < size; i++)
 	{
 		printf(" %02x", main_ptr[i] & 0xFF);
