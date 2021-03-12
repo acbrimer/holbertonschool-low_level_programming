@@ -1,21 +1,25 @@
-segment .data                   ;section declaration
-    msg db     "Hello, Holberton", 0xA, 0x0 ;our NULL-terminated string, ending with 0xA (lf) or 0xD (CR)
-    len equ     $ - msg             ;length of our dear string
+%define sys_write 1
+%define stdout 1
 
-segment .text                   ;section declaration
-    global  main            ;we must export the entry point to the ELF linker or loader
-main: 
-    enter 0,0 
-    call pushaq 
- 
-                                ;write string to stdout 
-    mov     rdx,len             ;third argument: message length 
-    mov     rsi,msg             ;second argument: pointer to message to write 
-    mov     rdi,1               ;first argument: file handle (stdout) 
-    mov     rax,1               ;system call number (sys_write) 
-    syscall                ;call kernel 
- 
-    call popaq 
-    xor rax, rax                      ; doing same as `mov rax, 0` 
-    leave 
-    ret 
+%define sys_exit 60
+%define success 0
+
+%define nl 10
+
+section .data
+
+    message db "Hello, Holberton", nl
+
+section .text
+
+global _start
+_start:
+    mov rax, sys_write
+    mov rdi, stdout
+    mov rsi, message
+    mov rdx, 14
+    syscall
+
+    mov rax, sys_exit
+    mov rdi, success
+    syscall
