@@ -4,17 +4,18 @@ segment .data                   ;section declaration
 
 segment .text                   ;section declaration
     global  main            ;we must export the entry point to the ELF linker or loader
-main:
-    enter 0,0
-    pusha
-                                ;write our string to stdout
-    mov     edx,len             ;third argument: message length
-    mov     ecx,msg             ;second argument: pointer to message to write
-    mov     ebx,1               ;first argument: file handle (stdout)
-    mov     eax,4               ;system call number (sys_write)
-    int     0x80                ;call kernel
+main: 
+    enter 0,0 
+    call pushaq 
  
-    popa
-    xor eax, eax  ; set eax 0
-    leave
-    ret
+                                ;write string to stdout 
+    mov     rdx,len             ;third argument: message length 
+    mov     rsi,msg             ;second argument: pointer to message to write 
+    mov     rdi,1               ;first argument: file handle (stdout) 
+    mov     rax,1               ;system call number (sys_write) 
+    syscall                ;call kernel 
+ 
+    call popaq 
+    xor rax, rax                      ; doing same as `mov rax, 0` 
+    leave 
+    ret 
