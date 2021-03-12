@@ -1,25 +1,15 @@
-%define sys_write 1
-%define stdout 1
-
-%define sys_exit 60
-%define success 0
-
-%define nl 10
-
-section .data
-
-    message db "Hello, Holberton", nl
-
-section .text
-
-global _start
-_start:
-    mov rax, sys_write
-    mov rdi, stdout
-    mov rsi, message
-    mov rdx, 14
-    syscall
-
-    mov rax, sys_exit
-    mov rdi, success
-    syscall
+SECTION .data 
+msg: db "Hello, Holberton", 10 
+ 
+	SECTION .text 
+	global main 
+main: 
+	mov edx, 18
+	mov ecx, msg 
+	mov ebx, 1 
+	mov eax, 4 
+	int 0x80 
+ 
+	mov ebx, 0 
+	mov eax, 1 
+	int 0x80
