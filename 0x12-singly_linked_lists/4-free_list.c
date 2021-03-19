@@ -3,7 +3,7 @@
 
 /**
  * free_list - frees a list of type list_t
- * @h: list_t type header node
+ * @head: list_t type header node
 */
 void free_list(list_t *head)
 {
