@@ -8,14 +8,17 @@
 */
 int sum_listint(listint_t *head)
 {
-	int sum;
-	listint_t *tmp = head;
+	int sum = 0, n;
+	listint_t *tmp = malloc(sizeof(listint_t));
 
+	tmp = head;
 	while (tmp)
 	{
-		sum += tmp->n;
+		n = tmp->n;
+		sum += n;
 		tmp = tmp->next;
 	}
+	free(tmp);
 
 	return (sum);
 }
