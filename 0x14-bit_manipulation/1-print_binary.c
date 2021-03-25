@@ -6,16 +6,18 @@
 */
 void print_binary(unsigned long int n)
 {
-	char b[64];
-	int i;
+	int i, s = 0;
 
 	if (n == 0)
 		_putchar('0');
 	else
 	{
-		for (i = 0; n > 0; n >>= 1, i++)
-			b[i] = (n & 1) + '0';
-		for (; i > 0; i--)
-			_putchar(b[i - 1]);
+		for (i = 63; i >= 0; i++)
+		{
+			if ((!s) && ((n >> i) & 1))
+				s = 1;
+			if (s)
+				_putchar((n >> i) & 1 ? '1' : '0');
+		}
 	}
 }
