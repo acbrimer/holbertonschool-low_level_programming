@@ -9,14 +9,10 @@
 */
 int set_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned long int mask = 1;
-	unsigned int i;
-
 	if (index > 63)
 		return (-1);
-	for (i = 0; i < index; i++)
-		mask <<= 1;
-	*n = (*n ^ mask);
+	/* set n to n OR bit mask where all bits are 0 except index */
+	*n ^= (1UL << index);
 
 	return (1);
 }
