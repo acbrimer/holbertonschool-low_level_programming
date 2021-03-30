@@ -59,8 +59,8 @@ void copy_files(const char *src_filename, const char *dest_filename)
 			exit(99);
 		}
 	}
-	close_fd(fd_src);
-	close_fd(fd_dest);
+	close(fd_src);
+	close(fd_dest);
 }
 
 /**
