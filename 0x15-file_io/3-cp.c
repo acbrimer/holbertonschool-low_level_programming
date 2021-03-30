@@ -16,15 +16,9 @@ void close_fd(int fd_src, int fd_dest)
 		res_dest = close(fd_dest);
 
 	if (res_src == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_src);
-		exit(100);
-	}
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_src), exit(100);
 	if (res_dest == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_dest);
-		exit(100);
-	}
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_dest), exit(100);
 }
 
 /**
@@ -40,10 +34,7 @@ void copy_files(const char *src_filename, const char *dest_filename)
 
 	fd_src = open(src_filename, O_RDONLY);
 	if (fd_src == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_filename);
-		exit(98);
-	}
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_filename), exit(98);
 	fd_dest = open(dest_filename, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (fd_dest == -1)
 	{
@@ -57,16 +48,14 @@ void copy_files(const char *src_filename, const char *dest_filename)
 		{
 			close(fd_src);
 			close(fd_dest);
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_filename);
-			exit(98);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_filename), exit(98);
 		}
 		writelen = write(fd_dest, buf, buflen);
 		if (writelen != buflen)
 		{
 			close(fd_src);
 			close(fd_dest);
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_filename);
-			exit(99);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_filename), exit(99);
 		}
 	}
 	close_fd(fd_src, fd_dest);
