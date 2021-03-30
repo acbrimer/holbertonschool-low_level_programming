@@ -24,7 +24,8 @@ void close_fd(int fd)
 */
 void copy_files(const char *src_filename, const char *dest_filename)
 {
-	int fd_src, fd_dest, buflen, writelen;
+	int fd_src, fd_dest
+	ssize_t buflen, writelen;
 	char buf[1024];
 
 	fd_src = open(src_filename, O_RDONLY);
