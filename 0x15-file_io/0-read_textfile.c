@@ -10,7 +10,7 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
-	ssize_t buflen, total = 0;
+	ssize_t buflen, writelen, total = 0;
 	char buf[1024];
 
 	if (filename == NULL)
@@ -20,7 +20,10 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	{
 		if ((total + buflen) > (ssize_t)letters)
 			buflen = letters - total;
-		total += write(1, buf, buflen);
+		writelen = write(1, buf, buflen);
+		if (writelen != buflen)
+			return (0);
+		total += writelen;
 	}
 	close(fd);
 
