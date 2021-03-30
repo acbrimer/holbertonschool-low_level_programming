@@ -27,7 +27,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		close(fd);
 		return (0);
 	}
-	writelen = write(1, buf, (size_t)buflen < letters ? (size_t)buflen : letters);
+	writelen = write(STDOUT_FILENO, buf, (size_t)buflen < letters ? (size_t)buflen : letters);
 	free(buf);
 	close(fd);
 
