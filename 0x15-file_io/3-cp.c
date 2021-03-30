@@ -3,16 +3,26 @@
 
 /**
  * close_fd - closes a file descriptor and checks for error
- * @fd: file descriptor
+ * @fd_src: source file descriptor
+ * @fd_dest: target file descriptor
 */
-void close_fd(int fd)
+void close_fd(int fd_src, int fd_dest)
 {
-	int res;
+	int res_src, res_dest;
 
-	res = close(fd);
-	if (res == -1)
+	if (fd_src != -1)
+		res_src = close(fd_src);
+	if (fd_dest != -1)
+		res_dest = close(fd_dest);
+
+	if (res_src == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_src);
+		exit(100);
+	}
+	if (res_dest == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_dest);
 		exit(100);
 	}
 }
@@ -37,7 +47,7 @@ void copy_files(const char *src_filename, const char *dest_filename)
 	fd_dest = open(dest_filename, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (fd_dest == -1)
 	{
-		close(fd_src);
+		close_fd(fd_src, -1);
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_filename);
 		exit(99);
 	}
@@ -45,22 +55,19 @@ void copy_files(const char *src_filename, const char *dest_filename)
 	{
 		if (buflen <= 0)
 		{
-			close_fd(fd_src);
-			close_fd(fd_dest);
+			close_fd(fd_src, fd_dest);
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_filename);
 			exit(98);
 		}
 		writelen = write(fd_dest, buf, buflen);
 		if (writelen != buflen)
 		{
-			close_fd(fd_src);
-			close_fd(fd_dest);
+			close_fd(fd_src, fd_dest);
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_filename);
 			exit(99);
 		}
 	}
-	close_fd(fd_src);
-	close_fd(fd_dest);
+	close_fd(fd_src, fd_dest);
 }
 
 /**
