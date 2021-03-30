@@ -37,7 +37,7 @@ void copy_files(const char *src_filename, const char *dest_filename)
 	fd_dest = open(dest_filename, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (fd_dest == -1)
 	{
-		close(fd_src);
+		close_fd(fd_src);
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_filename);
 		exit(99);
 	}
@@ -45,8 +45,8 @@ void copy_files(const char *src_filename, const char *dest_filename)
 	{
 		if (buflen <= 0)
 		{
-			close(fd_src);
-			close(fd_dest);
+			close_fd(fd_src);
+			close_fd(fd_dest);
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_filename);
 			exit(98);
 		}
