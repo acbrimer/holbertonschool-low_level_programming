@@ -68,7 +68,7 @@ void copy_files(const char *src_filename, const char *dest_filename)
  * @ac: number of args (must == 3)
  * @av: arg values
  *
- * Return: 1 for success, specific error code for fail
+ * Return: 0 for success, specific error code for fail
 */
 int main(int ac, char **av)
 {
@@ -78,5 +78,5 @@ int main(int ac, char **av)
 		return (97);
 	}
 	copy_files(av[1], av[2]);
-	return (1);
+	return (0);
 }
