@@ -9,27 +9,33 @@
 */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	long int fd, buflen, writelen;
-	char *buf = malloc(letters);
+	int fd, buflen, writelen;
+	ssize_t total = 0;
+	char buf[1024];
 
-	if (filename == NULL || buf == NULL)
+	if (filename == NULL)
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
-		free(buf);
 		return (0);
-	}
-	buflen = read(fd, buf, letters);
-	if (buflen <= 0)
+	while ((buflen = read(fd, buf, 1024)) > 0)
 	{
-		free(buf);
-		close(fd);
-		return (0);
+		if (buflen <= 0)
+		{
+			close(fd);
+			return (0);
+		}
+		if ((total + (ssize_t)buflen) > (ssize_t)letters)
+			buflen = (int)(letters - total);
+		writelen = write(STDOUT_FILENO, buf, buflen);
+		if (writelen != buflen)
+		{
+			close(fd);
+			return (0);
+		}
+		total += (ssize_t)writelen;
 	}
-	writelen = write(STDOUT_FILENO, buf, (size_t)buflen < letters ? (size_t)buflen : letters);
-	free(buf);
 	close(fd);
 
-	return (writelen <= 0 ? 0 : (ssize_t)writelen);
+	return (total);
 }
