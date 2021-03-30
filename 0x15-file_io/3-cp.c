@@ -18,27 +18,34 @@ void close_fd(int fd)
 }
 
 /**
- * copy_files - copies text from one file to another
- * @src_filename: name of source file
- * @dest_filename: name of target file
+ * main - copies text from one file to another
+ * @ac: name of args (must be 3)
+ * @av: arg values
+ *
+ * Return: 0 for success or errnumber
 */
-void copy_files(const char *src_filename, const char *dest_filename)
+int main(int ac, char **av)
 {
 	int fd_src, fd_dest;
 	ssize_t buflen, writelen;
 	char buf[1024];
 
-	fd_src = open(src_filename, O_RDONLY);
+	if (ac != 3)
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to");
+		exit(97);
+	}
+	fd_src = open(av[1], O_RDONLY);
 	if (fd_src == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_filename);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
-	fd_dest = open(dest_filename, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	fd_dest = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (fd_dest == -1)
 	{
 		close_fd(fd_src);
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_filename);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
 	while ((buflen = read(fd_src, buf, 1024)) > 0)
@@ -47,7 +54,7 @@ void copy_files(const char *src_filename, const char *dest_filename)
 		{
 			close_fd(fd_src);
 			close_fd(fd_dest);
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_filename);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 			exit(98);
 		}
 		writelen = write(fd_dest, buf, buflen);
@@ -55,28 +62,11 @@ void copy_files(const char *src_filename, const char *dest_filename)
 		{
 			close_fd(fd_src);
 			close_fd(fd_dest);
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_filename);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 			exit(99);
 		}
 	}
 	close_fd(fd_src);
 	close_fd(fd_dest);
-}
-
-/**
- * main - reads args and calls copy_files
- * @ac: number of args (must == 3)
- * @av: arg values
- *
- * Return: 0 for success, specific error code for fail
-*/
-int main(int ac, char **av)
-{
-	if (ac != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		return (97);
-	}
-	copy_files(av[1], av[2]);
 	return (0);
 }
