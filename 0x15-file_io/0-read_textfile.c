@@ -20,7 +20,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		close(fd);
 	while ((buflen = read(fd, buf, 1024)) > 0)
 	{
-		if (buflen == -1)
+		if (buflen <= 0)
 		{
 			close(fd);
 			return (0);
