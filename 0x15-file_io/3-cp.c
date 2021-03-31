@@ -11,8 +11,8 @@
 int main(int ac, char **av)
 {
 	int fd_src, fd_dest;
-	ssize_t buflen;
-	char buf[1024];
+	ssize_t buflen, writelen;
+	char buffer[1024];
 
 	if (ac != 3)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
@@ -22,8 +22,16 @@ int main(int ac, char **av)
 	fd_dest = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (fd_dest == -1)
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]), exit(99);
-	while ((buflen = read(fd_src, buf, 1024)) > 0)
-		write(fd_dest, buf, buflen);
+	while ((buflen = read(fd_src, buffer, 1024)) > 0)
+	{
+		writelen = write(fd_dest, buffer, buflen);
+		if (writelen != buflen)
+		{
+			close(fd_src);
+			close(fd_dest);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]), exit(99);
+		}
+	}
 	if (close(fd_src) == -1)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_src), exit(100);
 	if (close(fd_dest) == -1)
