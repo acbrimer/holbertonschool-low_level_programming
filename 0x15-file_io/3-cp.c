@@ -25,13 +25,11 @@ int main(int ac, char **av)
 	while ((buflen = read(fd_src, buffer, 1024)) > 0)
 	{
 		writelen = write(fd_dest, buffer, buflen);
-		if (writelen != buflen)
-		{
-			close(fd_src);
-			close(fd_dest);
+		if (writelen == -1)
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]), exit(99);
-		}
 	}
+	if (buflen == -1)
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]), exit(98);
 	if (close(fd_src) == -1)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_src), exit(100);
 	if (close(fd_dest) == -1)
