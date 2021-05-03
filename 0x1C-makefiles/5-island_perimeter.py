@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" Module for calculating the perimeter of an island of 1's in a sea of 0's """
+
 def island_perimeter(grid):
     """Return the perimeter of the island of 1's"""
     grid_h = len(grid)
