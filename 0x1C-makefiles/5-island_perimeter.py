@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 def island_perimeter(grid):
+    """Return the perimeter of the island of 1's"""
     grid_h = len(grid)
     grid_w = len(grid[0])
     all_coords = sum([
