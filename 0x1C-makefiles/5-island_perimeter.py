@@ -14,15 +14,12 @@ def island_perimeter(grid):
         lambda c: (c[0], c[1]), filter(lambda x: x[2] == 1, all_coords))
     perim = 0
     for c in land_coords:
-        if c[0] == 0 or c[1] == 0 or c[0] == grid_w or c[1] == grid_h:
-            perim = 0
-            break
-        if c[1] > 0 and grid[c[1] - 1][c[0]] == 0:
+        if c[1] == 0 or grid[c[1] - 1][c[0]] == 0:
             perim += 1
-        if c[1] < grid_h and grid[c[1] + 1][c[0]] == 0:
+        if c[1] == grid_h or grid[c[1] + 1][c[0]] == 0:
             perim += 1
-        if c[0] > 0 and grid[c[1]][c[0] - 1] == 0:
+        if c[0] == 0 or grid[c[1]][c[0] - 1] == 0:
             perim += 1
-        if c[0] < grid_w and grid[c[1]][c[0] + 1] == 0:
+        if c[0] == grid_w or grid[c[1]][c[0] + 1] == 0:
             perim += 1
     return perim
