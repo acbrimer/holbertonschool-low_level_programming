@@ -16,10 +16,10 @@ def island_perimeter(grid):
     for c in land_coords:
         if c[1] > 0 and grid[c[1] - 1][c[0]] == 0:
             perim += 1
-        if c[1] < grid_h and grid[c[1] + 1][c[0]] == 0:
+        if c[1] < (grid_h - 1) and grid[c[1] + 1][c[0]] == 0:
             perim += 1
         if c[0] > 0 and grid[c[1]][c[0] - 1] == 0:
             perim += 1
-        if c[0] < grid_w and grid[c[1]][c[0] + 1] == 0:
+        if c[0] < (grid_w - 1) and grid[c[1]][c[0] + 1] == 0:
             perim += 1
     return perim
