@@ -1,12 +1,5 @@
 #!/usr/bin/python3
 def island_perimeter(grid):
-    grid = [
-        [0, 0, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0]
-    ]
     grid_h = len(grid)
     grid_w = len(grid[0])
     all_coords = sum([
