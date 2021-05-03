@@ -12,20 +12,14 @@ def island_perimeter(grid):
     ], [])
     land_coords = map(
         lambda c: (c[0], c[1]), filter(lambda x: x[2] == 1, all_coords))
-    str_land_coords = set(
-        map(lambda c: "{0}-{1}".format(c[0], c[1]),
-            filter(lambda x: x[2] == 1, all_coords)))
-    border_coords = list(filter(
-        lambda f: min(f) >= 0 and f[0] < grid_w and f[1] < grid_h,
-        sum(
-            map(lambda c:
-                list([
-                     [c[0], c[1] + 1],
-                     [c[0], c[1] - 1],
-                     [c[0] - 1, c[1]],
-                     [c[0] + 1, c[1]]
-                     ]),
-                land_coords), [])))
-    p = len(set(["{0}-{1}".format(c[0], c[1])
-            for c in border_coords]) ^ str_land_coords)
-    return (p)
+    perim = 0
+    for c in land_coords:
+        if c[1] > 0 and grid[c[1] - 1][c[0]] == 0:
+            perim += 1
+        if c[1] < grid_h and grid[c[1] + 1][c[0]] == 0:
+            perim += 1
+        if c[0] > 0 and grid[c[1]][c[0] - 1] == 0:
+            perim += 1
+        if c[0] < grid_w and grid[c[1]][c[0] + 1] == 0:
+            perim += 1
+    return perim
