@@ -28,4 +28,4 @@ def island_perimeter(grid):
                 land_coords), [])))
     p = len(set(["{0}-{1}".format(c[0], c[1])
             for c in border_coords]) ^ str_land_coords)
-    return (p + 1)
+    return (p)
