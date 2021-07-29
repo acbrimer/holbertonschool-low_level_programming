@@ -13,7 +13,7 @@ hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
 {
 	hash_node_t *node = malloc(sizeof(hash_node_t *));
 
-	node = c;
+	memcpy(node, c, sizeof(hash_node_t));
 	while (node)
 	{
 		if (node->key == n->key)
