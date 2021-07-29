@@ -16,7 +16,7 @@ hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
 	node = c;
 	while (node)
 	{
-		if (node->key == node->key)
+		if (node->key == n->key)
 		{
 			node->value = n->value;
 			return (node);
