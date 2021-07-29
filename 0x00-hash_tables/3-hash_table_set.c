@@ -3,6 +3,31 @@
 #include <string.h>
 
 /**
+ * handle_collision - handles collision in node
+ * @n: new node pointer
+ * @c: current node pointer
+ *
+ * Return: new node
+ */
+hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
+{
+	hash_node_t *node = malloc(sizeof(hash_node_t *));
+
+	node = c;
+	while (node)
+	{
+		if (node->key == node->key)
+		{
+			node->value = n->value;
+			return (node);
+		}
+		node = node->next;
+	}
+	n->next = c;
+	return (n);
+}
+
+/**
  * hash_table_set - sets key in hash table
  * @ht: pointer to hash table
  * @key: key to set
@@ -27,7 +52,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	n->key = k;
 	n->value = v;
 	if (ht->array[ix])
-		n->next = ht->array[ix];
-	ht->array[ix] = n;
+		ht->array[ix] = handle_collision(n, ht->array[ix]);
+	else
+		ht->array[ix] = n;
 	return (1);
 }
