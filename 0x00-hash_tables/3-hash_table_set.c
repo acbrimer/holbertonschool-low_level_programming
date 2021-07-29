@@ -16,7 +16,7 @@ hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
 	memcpy(node, c, sizeof(hash_node_t));
 	while (node)
 	{
-		if (node->key == n->key)
+		if (strcmp(node->key, n->key) == 0)
 		{
 			node->value = n->value;
 			return (node);
@@ -42,7 +42,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	char *v = malloc(sizeof(char) * strlen(value));
 	hash_node_t *n = malloc(sizeof(hash_node_t *));
 
-	if (k == NULL || v == NULL || n == NULL)
+	if (ht == NULL || k == NULL || v == NULL || n == NULL)
 		return (0);
 	strcpy(k, key);
 	strcpy(v, value);
