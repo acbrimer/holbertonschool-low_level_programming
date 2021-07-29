@@ -11,17 +11,14 @@
  */
 hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
 {
-	hash_node_t *node = malloc(sizeof(hash_node_t *));
-
-	memcpy(node, c, sizeof(hash_node_t));
-	while (node)
+	while (c)
 	{
-		if (strcmp(node->key, n->key) == 0)
+		if (strcmp(c->key, n->key) == 0)
 		{
-			node->value = n->value;
-			return (node);
+			c->value = n->value;
+			return (c);
 		}
-		node = node->next;
+		c = c->next;
 	}
 	return (n);
 }
@@ -36,14 +33,14 @@ hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int ix, hash, size = ht->size;
-
+	unsigned long int ix, hash, size;
 	char *k = malloc(sizeof(char) * strlen(key));
 	char *v = malloc(sizeof(char) * strlen(value));
 	hash_node_t *n = malloc(sizeof(hash_node_t *));
 
 	if (ht == NULL || k == NULL || v == NULL || n == NULL)
 		return (0);
+	size = ht->size;
 	strcpy(k, key);
 	strcpy(v, value);
 	hash = hash_djb2((const unsigned char *)k);
