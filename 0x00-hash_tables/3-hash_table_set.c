@@ -11,20 +11,17 @@
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-    unsigned long int ix, size = 0;
+	unsigned long int ix, size = 0;
+	hash_node_t *n = malloc(sizeof(hash_node_t *));
 
-    hash_node_t *n = malloc(sizeof(hash_node_t *));
-
-    if (n == NULL)
-        return (0);
-    while (ht->array[size])
-        size++;
-    size++;
-    ix = hash_djb2((const unsigned char *)key) % size;
-    n->key = (char *)key;
-    n->value = (char *)value;
-    if (ht->array[ix] != NULL)
-        n->next = ht->array[ix];
-    ht->array[ix] = n;
-    return (1);
+	if (n == NULL)
+		return (0);
+	while (ht->array[size])
+		size++;
+	size++;
+	ix = hash_djb2((const unsigned char *)key) % size;
+	n->key = (char *)key;
+	n->value = (char *)value;
+	ht->array[ix] = n;
+	return (1);
 }
