@@ -21,6 +21,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	ix = hash % size;
 	n->key = (char *)key;
 	n->value = (char *)value;
+	if (ht->array[ix]->value)
+		n->next = ht->array[ix];
 	ht->array[ix] = n;
 	return (1);
 }
