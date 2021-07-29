@@ -7,13 +7,13 @@
  * @n: new node pointer
  * @c: current node pointer
  *
- * Return: new node
+ * Return: new node with collision
  */
 hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
 {
 	hash_node_t *node = malloc(sizeof(hash_node_t *));
 
-	memcpy(node, c, sizeof(hash_node_t));
+	node = c;
 	while (node)
 	{
 		if (node->key == node->key)
@@ -23,7 +23,6 @@ hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
 		}
 		node = node->next;
 	}
-	n->next = c;
 	return (n);
 }
 
@@ -52,7 +51,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	n->key = k;
 	n->value = v;
 	if (ht->array[ix])
+	{
+		n->next = ht->array[ix];
 		ht->array[ix] = handle_collision(n, ht->array[ix]);
+	}
 	else
 		ht->array[ix] = n;
 	return (1);
