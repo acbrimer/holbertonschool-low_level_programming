@@ -1,5 +1,6 @@
 #include "hash_tables.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * hash_table_set - sets key in hash table
@@ -11,15 +12,13 @@
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int ix, size = 0;
+	unsigned long int ix, hash, size = ht->size;
 	hash_node_t *n = malloc(sizeof(hash_node_t *));
 
 	if (n == NULL)
 		return (0);
-	while (ht->array[size])
-		size++;
-	size++;
-	ix = hash_djb2((const unsigned char *)key) % size;
+	hash = hash_djb2((const unsigned char *)key);
+	ix = hash % size;
 	n->key = (char *)key;
 	n->value = (char *)value;
 	ht->array[ix] = n;
