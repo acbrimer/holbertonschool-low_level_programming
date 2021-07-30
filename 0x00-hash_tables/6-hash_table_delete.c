@@ -14,7 +14,6 @@ void delete_node(hash_node_t *n)
         next = tmp->next;
         free(tmp->key);
         free(tmp->value);
-        free(tmp->next);
         free(tmp);
         tmp = next;
     }
