@@ -31,7 +31,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		if (strcmp(tmp->key, key) == 0)
 		{
 			n->next = tmp->next;
+			free(tmp->value);
+			free(tmp->key);
 			free(tmp);
+			break;
 		}
 		tmp = next;
 	}
