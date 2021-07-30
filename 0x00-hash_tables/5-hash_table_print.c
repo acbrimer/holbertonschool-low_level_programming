@@ -6,16 +6,17 @@
 /**
  * print_node - prints a node as `key: value`
  * @n: pointer to node to print
- *
- * Return: 1 for printed, 0 for not printed
+ * @isLast: last index with a key
  */
-int print_node(const hash_node_t *n)
+int print_node(const hash_node_t *n, int isLast)
 {
 	if (n == NULL || n->key == NULL)
 		return (0);
-	printf("'%s': '%s', ", n->key, n->value);
+	printf("'%s': '%s'", n->key, n->value);
+	if (isLast == 0 || n->next != NULL)
+		printf(", ");
 	if (n->next != NULL)
-		print_node(n->next);
+		print_node(n->next, isLast);
 	return (1);
 }
 
@@ -25,12 +26,15 @@ int print_node(const hash_node_t *n)
  */
 void hash_table_print(const hash_table_t *ht)
 {
-	unsigned long int i, c = 0;
+	unsigned long int i, lastIx = 0;
 
-	printf("{");
 	if (ht == NULL)
-		return;
-	for (i = 1; i < ht->size; i++)
-		c += print_node(ht->array[i]);
-	printf(c == 0 ? "}\n" : "\b\b}\n");
+		printf("{}\n");
+	for (i = 0; i < ht->size; i++)
+		if (ht->array[i] != NULL && ht->array[i]->key != NULL)
+			lastIx = i;
+	printf("{");
+	for (i = 0; i < ht->size; i++)
+		print_node(ht->array[i], i == lastIx ? 1 : 0);
+	printf("}\n");
 }
