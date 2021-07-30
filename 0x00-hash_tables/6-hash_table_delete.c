@@ -28,7 +28,8 @@ void hash_table_delete(hash_table_t *ht)
     unsigned long int i;
 
     for (i = 0; i < ht->size; i++)
-        delete_node(ht->array[i]);
+        if (ht->array[i] != NULL)
+            delete_node(ht->array[i]);
     free(ht->array);
     free(ht);
 }
