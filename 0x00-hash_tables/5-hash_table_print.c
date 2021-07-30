@@ -8,16 +8,16 @@
  * @n: pointer to node to print
  * @isLast: last index with a key
  */
-int print_node(const hash_node_t *n, int isLast)
+void print_node(const hash_node_t *n, int isLast)
 {
 	if (n == NULL || n->key == NULL)
-		return (0);
+		return;
 	printf("'%s': '%s'", n->key, n->value);
 	if (isLast == 0 || n->next != NULL)
 		printf(", ");
 	if (n->next != NULL)
 		print_node(n->next, isLast);
-	return (1);
+	return;
 }
 
 /**
@@ -29,7 +29,7 @@ void hash_table_print(const hash_table_t *ht)
 	unsigned long int i, lastIx = 0;
 
 	if (ht == NULL)
-		printf("{}\n");
+		return;
 	for (i = 0; i < ht->size; i++)
 		if (ht->array[i] != NULL && ht->array[i]->key != NULL)
 			lastIx = i;
