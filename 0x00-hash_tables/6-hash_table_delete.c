@@ -14,6 +14,7 @@ void delete_node(hash_node_t *n)
         next = tmp->next;
         free(tmp->key);
         free(tmp->value);
+        free(tmp->next);
         free(tmp);
         tmp = next;
     }
@@ -28,8 +29,7 @@ void hash_table_delete(hash_table_t *ht)
     unsigned long int i;
 
     for (i = 0; i < ht->size; i++)
-        if (ht->array[i] != NULL)
-            delete_node(ht->array[i]);
+        delete_node(ht->array[i]);
     free(ht->array);
     free(ht);
 }
