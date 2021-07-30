@@ -36,19 +36,15 @@ hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int ix, hash, size;
-	char *k = malloc(sizeof(char) * strlen(key));
-	char *v = malloc(sizeof(char) * strlen(value));
 	hash_node_t *n = malloc(sizeof(hash_node_t));
 
-	if (ht == NULL || k == NULL || v == NULL || n == NULL)
+	if (ht == NULL || key == NULL || value == NULL || n == NULL)
 		return (0);
 	size = ht->size;
-	strcpy(k, key);
-	strcpy(v, value);
-	hash = hash_djb2((const unsigned char *)k);
+	hash = hash_djb2((const unsigned char *)key);
 	ix = hash % size;
-	n->key = k;
-	n->value = v;
+	n->key = strdup(key);
+	n->value = strdup(value);
 	if (ht->array[ix])
 	{
 		n->next = ht->array[ix];
