@@ -10,7 +10,7 @@
  *
  * Return: 1 for printed, else 0
  */
-void print_node(const hash_node_t *n, int isLast)
+int print_node(const hash_node_t *n, int isLast)
 {
 	if (n == NULL || n->key == NULL)
 		return (0);
