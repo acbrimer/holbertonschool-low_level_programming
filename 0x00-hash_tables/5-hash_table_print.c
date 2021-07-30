@@ -7,17 +7,19 @@
  * print_node - prints a node as `key: value`
  * @n: pointer to node to print
  * @isLast: last index with a key
+ *
+ * Return: 1 for printed, else 0
  */
 void print_node(const hash_node_t *n, int isLast)
 {
-	if (n != NULL && n->key == NULL)
-	{
-		printf("'%s': '%s'", n->key, n->value);
-		if (isLast == 0 || n->next != NULL)
-			printf(", ");
-		if (n->next != NULL)
-			print_node(n->next, isLast);
-	}
+	if (n == NULL || n->key == NULL)
+		return (0);
+	printf("'%s': '%s'", n->key, n->value);
+	if (isLast == 0 || n->next != NULL)
+		printf(", ");
+	if (n->next != NULL)
+		print_node(n->next, isLast);
+	return (1);
 }
 
 /**
