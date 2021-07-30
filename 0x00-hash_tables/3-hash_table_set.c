@@ -16,8 +16,8 @@ hash_node_t *handle_collision(hash_node_t *n, hash_node_t *c)
 		if (strcmp(c->key, n->key) == 0)
 		{
 			free(c->value);
-			c->value = malloc(sizeof(char) * strlen(n->value));
-			strcpy(c->value, n->value);
+			c->value = strdup(n->value);
+			free(n);
 			return (c);
 		}
 		c = c->next;
@@ -45,11 +45,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	ix = hash % size;
 	n->key = strdup(key);
 	n->value = strdup(value);
+	n->next = ht->array[ix];
 	if (ht->array[ix])
-	{
-		n->next = ht->array[ix];
 		ht->array[ix] = handle_collision(n, ht->array[ix]);
-	}
 	else
 		ht->array[ix] = n;
 	return (1);
