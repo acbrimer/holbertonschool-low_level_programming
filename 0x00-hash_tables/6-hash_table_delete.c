@@ -7,7 +7,7 @@
  */
 void delete_node(hash_node_t *n)
 {
-    hash_node_t *tmp = n, *next = n;
+    hash_node_t *tmp = n, *next;
 
     while (tmp)
     {
