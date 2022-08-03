@@ -6,6 +6,8 @@
  * @array: the array to search
  * @size: size of the array to search
  * @value: value to search in array
+ *
+ * Return: ix of first value in array or -1
  */
 int linear_search(int *array, size_t size, int value)
 {
