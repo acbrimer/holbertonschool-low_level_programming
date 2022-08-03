@@ -34,6 +34,8 @@ Build: `gcc -Wall -Wextra -Werror -pedantic -std=gnu89 1-main.c 1-binary.c -o ./
 
 #### 0. Advanced binary search
 
+Build: `gcc -Wall -Wextra -Werror -pedantic -std=gnu89 104-main.c 104-advanced_binary.c -o ./build/104-advanced_binary`
+
 - Prototype: `int advanced_binary(int *array, size_t size, int value);`
 - Where `array` is a pointer to the first element of the array to search in
 - `size` is the number of elements in array
