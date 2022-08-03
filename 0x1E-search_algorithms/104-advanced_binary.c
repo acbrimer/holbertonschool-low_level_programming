@@ -12,7 +12,11 @@
 int binary_recursive(int *array, unsigned int l, unsigned int r, int value)
 {
 	unsigned int i = l + 1;
-	int m = l + (r - l) / 2;
+	int len = (r - l);
+	int m = (l + len / 2);
+
+	if (len > 3 && len % 2 == 0)
+		m++;
 
 	if (l > r)
 		return (-1);
@@ -32,7 +36,7 @@ int binary_recursive(int *array, unsigned int l, unsigned int r, int value)
 }
 
 /**
- * advanced_binary - binary search for sorted array (same solution as 1-binary.c)
+ * advanced_binary - binary search for sorted array (see 1-binary.c)
  * @array: pointer to first element of sorted array
  * @size: number of elements in array
  * @value: value to search for
