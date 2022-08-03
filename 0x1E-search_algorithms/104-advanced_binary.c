@@ -15,9 +15,6 @@ int binary_recursive(int *array, unsigned int l, unsigned int r, int value)
 	int len = (r - l);
 	int m = (l + len / 2);
 
-	if (len > 3 && len % 2 == 0)
-		m++;
-
 	if (l > r)
 		return (-1);
 	printf("Searching in array: %d", array[l]);
